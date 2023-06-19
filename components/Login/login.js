@@ -134,22 +134,7 @@ export default function Login() {
             </TouchableOpacity>
           </View>
         </View>
-        <View className="flex bg-slate-200 rounded-xl m-8 mt-10 mb-3 h-14 justify-center">
-        <TextInput
-          className="ml-5"
-          placeholder="UserName"
-          onChangeText={(text) => setNumber(text)}
-        />
       </View>
-      <View className="flex bg-slate-200 rounded-xl ml-8 mr-8  h-14 justify-center">
-        <TextInput
-          className="ml-5"
-          placeholder="Password"
-          onChangeText={(text) => setValue({ ...value, password: text })}
-        />
-      </View>
-      </View>
-    
     </SafeAreaView>
   );
 }

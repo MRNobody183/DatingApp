@@ -52,9 +52,9 @@ export default function Signup() {
           <Text className="text-5xl  font-medium text-red-600">Let`s</Text>
           <Text className="text-5xl ml-2 font-light">Connect</Text>
         </View>
-        <View className="flex bg-slate-200 rounded-xl m-8 mt-10 mb-3 h-14 justify-center">
+        {/* <View className="flex bg-slate-200 rounded-xl m-8 mt-10 mb-3 h-14 justify-center">
           <TextInput className="ml-5" placeholder="Name" />
-        </View>
+        </View> */}
         <View className="flex bg-slate-200 rounded-xl ml-8 mr-8  h-14 justify-center">
           <TextInput
             className="ml-5"
@@ -62,7 +62,7 @@ export default function Signup() {
             onChangeText={(text) => setValue({ ...value, email: text })}
           />
         </View>
-        <View className="flex bg-slate-200 mt-3 rounded-xl ml-8 mr-8  h-14 justify-center">
+        {/* <View className="flex bg-slate-200 mt-3 rounded-xl ml-8 mr-8  h-14 justify-center">
           <RNPickerSelect
             placeholder={{
               label: "Gender",
@@ -74,8 +74,8 @@ export default function Signup() {
               { label: "Female", value: "Female" },
             ]}
           />
-        </View>
-        <View className="flex bg-slate-200 mt-3 rounded-xl ml-8 mr-8  h-14 justify-center">
+        </View> */}
+        {/* <View className="flex bg-slate-200 mt-3 rounded-xl ml-8 mr-8  h-14 justify-center">
           <TextInput className="ml-5" placeholder="Age" />
         </View>
         <View className="flex bg-slate-200 rounded-xl m-8 mt-3 mb-3 h-14 justify-center">
@@ -83,7 +83,7 @@ export default function Signup() {
         </View>
         <View className="flex bg-slate-200 rounded-xl ml-8 mr-8  h-14 justify-center">
           <TextInput className="ml-5" placeholder="Email" />
-        </View>
+        </View> */}
         <View className="flex bg-slate-200 mt-3 rounded-xl ml-8 mr-8  h-14 justify-center">
           <TextInput
             className="ml-5"
@@ -91,9 +91,9 @@ export default function Signup() {
             onChangeText={(text) => setValue({ ...value, password: text })}
           />
         </View>
-        <View className="flex bg-slate-200 mt-3 rounded-xl ml-8 mr-8  h-14 justify-center">
+        {/* <View className="flex bg-slate-200 mt-3 rounded-xl ml-8 mr-8  h-14 justify-center">
           <TextInput className="ml-5" placeholder="Confirm Password" />
-        </View>
+        </View> */}
         <View className="flex flex-row ml-10 mt-5">
           <TouchableOpacity className="ml-1 flex flex-row">
             <Text className="">Already Have an Account?</Text>
@@ -109,7 +109,6 @@ export default function Signup() {
           </TouchableOpacity>
         </View>
       </View>
-    
     </ScrollView>
   );
 }

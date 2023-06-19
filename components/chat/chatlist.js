@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import * as Contacts from "expo-contacts";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
-import sudais from "./sudais.jpg";
+
 import { useNavigation } from "@react-navigation/native";
 export default function ChatList() {
   const users = useSelector((state) => state.selectedUser);
@@ -80,24 +80,14 @@ export default function ChatList() {
                   />
                 </View>
                 <View className="flex ml-3">
-                  <Text className="text-base">{u.firstName} {u?.lastName}</Text>
+                  <Text className="text-base">
+                    {u.firstName} {u?.lastName}
+                  </Text>
                   {/* <Text className="text-base">{u.phoneNumbers?.number}</Text> */}
                 </View>
               </TouchableOpacity>
             );
           })}
-        <View className="ml-5 flex flex-row m-2 bg-zinc-100">
-          <View>
-            <Image
-              source={sudais}
-              className="rounded-full h-16 w-16 content-evenly"
-            />
-          </View>
-          <View className="flex ml-3">
-            <Text className="text-base">Sudais</Text>
-            <Text className="text-base">Abtabad</Text>
-          </View>
-        </View>
       </ScrollView>
     </SafeAreaProvider>
   );

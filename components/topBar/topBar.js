@@ -12,7 +12,7 @@ export default function TopBar() {
     navigation.navigate("ChatList");
   }; 
   return (
-    <View className=" flex-row items-center rounded-lg  bottom-0 justify-around bg-white shadow-lg h-16 z-10  shadow-black">
+    <View className=" flex-row items-center rounded-lg -bottom-10 justify-around bg-white shadow-lg h-16 z-10  shadow-black">
       <TouchableOpacity>
         <Fontisto name="heart-alt" size={27} color="#c61a09" />
       </TouchableOpacity>

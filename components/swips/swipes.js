@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 export default function SwipeableImage({ user }) {
   const navigation = useNavigation();
   const showMap = (coordinate) => {
+    
     navigation.navigate("Map", {
       latitude: Number(coordinate.latitude),
       longitude: Number(coordinate.longitude),

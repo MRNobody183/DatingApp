@@ -7,22 +7,29 @@ import styles from "./home.style";
 import BottomBar from "../bottomBar/bottomBar";
 import { useDispatch } from "react-redux";
 import { userAdded } from "../../redux/reducers/selectedUsersSlice";
+import * as Location from "expo-location";
+import * as Network from "expo-network";
+
 export default function Home() {
   const [users, setUsers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const swipesRef = useRef(null);
   const dispatch = useDispatch();
   async function fetchUsers() {
-    try {
-      const { data } = await axios.get(
-        "https://randomuser.me/api/?gender=female&results=50"
-      );
-      setUsers(data.results);
-    } catch (error) {
-      console.log(error);
-      Alert.alert("Error getting users", "", [
-        { text: "Retry", onPress: () => fetchUsers() },
-      ]);
+    let networkCheck = await Network.getNetworkStateAsync();
+
+    if (networkCheck.isInternetReachable) {
+      try {
+        const { data } = await axios.get(
+          "https://randomuser.me/api/?gender=female&results=50"
+        );
+        setUsers(data.results);
+      } catch (error) {
+        console.log(error);
+        Alert.alert("Error getting users", "", [
+          { text: "Retry", onPress: () => fetchUsers() },
+        ]);
+      }
     }
   }
 
@@ -33,7 +40,7 @@ export default function Home() {
   function handleLike(user) {
     console.log("like", { user });
     let use = {
-      id:user.cell,
+      id: user.cell,
       img: user.picture.large,
       age: user.dob.age,
       name: user.name.first,
@@ -48,7 +55,17 @@ export default function Home() {
     console.log("pass");
     nextUser();
   }
-
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+      let location = await Location.getCurrentPositionAsync();
+      console.log(location.coords);
+    })();
+  }, []);
   function nextUser() {
     const nextIndex = users.length - 2 === currentIndex ? 0 : currentIndex + 1;
     setCurrentIndex(nextIndex);
