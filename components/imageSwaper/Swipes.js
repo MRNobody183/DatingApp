@@ -33,7 +33,7 @@ function Swipes({ users, currentIndex, handleLike, handlePass, swipesRef }) {
         renderRightActions={renderRightActions}
         onSwipeableLeftOpen={() => {
           setWillLike(false);
-          handleLike();
+          handleLike(users[currentIndex]);
         }}
         onSwipeableRightOpen={() => {
           setWillPass(false);
@@ -48,7 +48,7 @@ function Swipes({ users, currentIndex, handleLike, handlePass, swipesRef }) {
   );
 }
 
-const styles = StyleSheetjustify.create({
+const styles = StyleSheet.create({
   container: {
 
   },

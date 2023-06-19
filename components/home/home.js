@@ -1,15 +1,17 @@
-import { View, Text, Alert } from "react-native";
+import { View, Text, Alert, SafeAreaView, StatusBar } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import TopBar from "../topBar/topBar";
 import Swipes from "../imageSwaper/Swipes";
 import axios from "axios";
 import styles from "./home.style";
 import BottomBar from "../bottomBar/bottomBar";
+import { useDispatch } from "react-redux";
+import { userAdded } from "../../redux/reducers/selectedUsersSlice";
 export default function Home() {
   const [users, setUsers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const swipesRef = useRef(null);
-
+  const dispatch = useDispatch();
   async function fetchUsers() {
     try {
       const { data } = await axios.get(
@@ -28,8 +30,17 @@ export default function Home() {
     fetchUsers();
   }, []);
 
-  function handleLike() {
-    console.log("like");
+  function handleLike(user) {
+    console.log("like", { user });
+    let use = {
+      id:user.cell,
+      img: user.picture.large,
+      age: user.dob.age,
+      name: user.name.first,
+      city: user.location.city,
+    };
+
+    dispatch(userAdded(use));
     nextUser();
   }
 
@@ -50,7 +61,7 @@ export default function Home() {
     swipesRef.current.openRight();
   }
   return (
-    <View className="">
+    <SafeAreaView className="">
       <View>
         {users.length > 1 &&
           users.map(
@@ -72,6 +83,7 @@ export default function Home() {
         handlePassPress={handlePassPress}
       />
       <TopBar />
-    </View>
+      <StatusBar />
+    </SafeAreaView>
   );
 }

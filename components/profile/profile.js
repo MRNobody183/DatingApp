@@ -5,26 +5,66 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
-import { FontAwesome5, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import React, { useState } from "react";
+import {
+  AntDesign,
+  FontAwesome,
+  FontAwesome5,
+  Ionicons,
+  SimpleLineIcons,
+} from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
+import { useDispatch, useSelector } from "react-redux";
+import { changeImage } from "../../redux/reducers/userDataSlice";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Profile() {
+  const userData = useSelector((state) => state.userData);
+  const [image, setImage] = useState(userData.img);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  
+  const changeProfile = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      console.log(result.assets[0].uri);
+      dispatch(changeImage(result.assets[0].uri.toString()));
+      setImage(result.assets[0].uri);
+    }
+  };
+  const handleCamera = () => {
+    navigation.navigate("Takeimg");
+  };
   return (
     <SafeAreaView>
       <View className="flex flex-col justify-between">
         <View className="flex justify-end items-end pr-5 pt-4 mb-0">
-          <TouchableOpacity>
-            <FontAwesome5 name="edit" size={18} />
+          <TouchableOpacity onPress={() => handleCamera(0)}>
+            <FontAwesome5 name="camera" size={18} />
           </TouchableOpacity>
         </View>
         <View className="flex justify-center items-center mt-2 pb-8 border-red-900 border-b-2">
           <View className="flex bg-slate-100 rounded-full h-32 w-32 ">
             <Image
               source={{
-                uri: "https://photosfile.com/wp-content/uploads/2022/07/Cartoon-DP-Boy-2.jpeg",
+                uri: image,
               }}
               className="rounded-full h-32 w-32 content-evenly"
             />
+            <TouchableOpacity
+              className="flex items-end z-10 top-[-22px] right-2"
+              onPress={changeProfile}
+            >
+              <AntDesign name="pluscircle" size={24} color="blue" />
+            </TouchableOpacity>
           </View>
           <View>
             <Text className="flex text-2xl text-center mt-4 ">Nobody</Text>

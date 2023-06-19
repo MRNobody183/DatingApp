@@ -2,14 +2,14 @@ import { StyleSheet } from "react-native";
 
 const Styles = StyleSheet.create({
    
-  photo: {
-    height: "100%",
-    resizeMode: "cover",
-    borderRadius: 30,
-  },
+  // photo: {
+  //   height: "100%",
+  //   resizeMode: "cover",
+  //   borderRadius: 30,
+  // },
   textContainer: {
     position: "absolute",
-    bottom: 20,
+    bottom: 80,
     left: 20,
   },
   textRow: {

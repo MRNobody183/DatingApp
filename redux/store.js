@@ -1,4 +1,10 @@
-import { createStore } from "redux";
-import rootReducer from './reducers';
+import { configureStore } from "@reduxjs/toolkit";
+import selectedUserSlice from "./reducers/selectedUsersSlice";
+import userDataSlice from "./reducers/userDataSlice";
 
-export default createStore(rootReducer);
+export const Store = configureStore({
+  reducer: {
+    selectedUser: selectedUserSlice,
+    userData: userDataSlice,
+  },
+});
